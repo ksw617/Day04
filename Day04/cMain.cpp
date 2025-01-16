@@ -54,7 +54,9 @@ int main()
 	enemy.x = 20;
 	enemy.y = 20;
 	enemy.color = Magenta;
-	enemy.shape[0] = "■";
+	enemy.shape[0] = "■■■■";
+	enemy.shape[1] = "■■■■";
+	enemy.shape[2] = "■■■■";
 
 	while (true)
 	{
@@ -63,19 +65,23 @@ int main()
 		KeyInput();
 
 		//충돌 처리 할수 있을까? 어떤 조건이어야지만?
-		if (player.x <= enemy.x		&&
-			enemy.x < player.x + 4	&&
-			player.y <= enemy.y		&&
-			enemy.y < player.y + 3)
+		if (player.x < enemy.x + 4	&&
+			enemy.x  < player.x+ 4 &&
+			player.y < enemy.y + 3	&&
+			enemy.y  < player.y+ 3)
+		
 		{
 			enemy.x = rand() % 30;
 			enemy.y = rand() % 30;
 		}
 
 
-		SetPosition(enemy.x, enemy.y);
 		ChangeColor(enemy.color);
-		printf(enemy.shape[0]);
+		for (int i = 0; i < 3; i++)
+		{
+			SetPosition(enemy.x, enemy.y + i);
+			printf(enemy.shape[i]);
+		}
 
 
 		ChangeColor(player.color);
