@@ -30,7 +30,7 @@ struct Obj
 	int x;
 	int y;
 	Color color;
-	const char* shape;
+	const char* shape[3];
 
 };
 
@@ -47,12 +47,14 @@ int main()
 	player.x = 10;
 	player.y = 10;
 	player.color = Yellow;
-	player.shape = "бс";
+	player.shape[0] = "бсбсбсбс";
+	player.shape[1] = "бсбсбсбс";
+	player.shape[2] = "бсбсбсбс";
 
 	enemy.x = 20;
 	enemy.y = 20;
 	enemy.color = Magenta;
-	enemy.shape = "бс";
+	enemy.shape[0] = "бс";
 
 	while (true)
 	{
@@ -60,13 +62,25 @@ int main()
 
 		KeyInput();
 
+		if (player.x == enemy.x && player.y == enemy.y)
+		{
+			enemy.x = rand() % 30;
+			enemy.y = rand() % 30;
+		}
+
+
 		SetPosition(enemy.x, enemy.y);
 		ChangeColor(enemy.color);
-		printf(enemy.shape);
+		printf(enemy.shape[0]);
 
-		SetPosition(player.x, player.y);
+
 		ChangeColor(player.color);
-		printf(player.shape);
+		for (int i = 0; i < 3; i++)
+		{
+			SetPosition(player.x, player.y + i);
+			printf(player.shape[i]);
+		}
+
 		Sleep(50);
 	}
 
