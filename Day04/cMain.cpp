@@ -62,7 +62,11 @@ int main()
 
 		KeyInput();
 
-		if (player.x == enemy.x && player.y == enemy.y)
+		//충돌 처리 할수 있을까? 어떤 조건이어야지만?
+		if (player.x <= enemy.x		&&
+			enemy.x < player.x + 4	&&
+			player.y <= enemy.y		&&
+			enemy.y < player.y + 3)
 		{
 			enemy.x = rand() % 30;
 			enemy.y = rand() % 30;
